@@ -1,1 +1,17 @@
 <p>calculator works!</p>
+<form [formGroup]=result (ngSubmit)="calculate()">
+  <label>Věk</label>
+  <input formControlName="age" type="number">
+  <br>
+  <label>Muž</label>
+  <input type="radio" name="sex" formControlName="sex" value="Male" checked>
+  <label>Žena</label>
+  <input type="radio" name="sex" formControlName="sex" value="Female">
+  <br>
+  <label>Výška</label>
+  <input formControlName="height"  type="number">
+  <br>
+  <label>Hmotnost</label>
+  <input formControlName="weight" type="number">
+  <button type="submit">Vypočítat</button>
+</form>

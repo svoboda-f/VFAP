@@ -11,6 +11,7 @@ import { CalculatorComponent } from './components/calculator/calculator.componen
 import { DiaryComponent } from './components/diary/diary.component';
 import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProfileComponent } from './components/profile/profile.component';
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        MatButtonModule
+        MatButtonModule,
+        ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
