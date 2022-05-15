@@ -12,6 +12,11 @@ import { DiaryComponent } from './components/diary/diary.component';
 import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatTableModule} from "@angular/material/table";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -23,13 +28,18 @@ import {ReactiveFormsModule} from "@angular/forms";
     AuthDialogComponent,
     ProfileComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatTabsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
