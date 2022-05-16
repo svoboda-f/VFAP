@@ -1,1 +1,21 @@
-<p>auth-dialog works!</p>
+<mat-dialog-content>
+  <h1>Přihlášení</h1>
+  <form [formGroup]="fgLogin" (ngSubmit)="onSubmit()">
+    <mat-form-field class="authform-full-width" appearance="fill">
+      <mat-label>Uživatelské jméno</mat-label>
+      <input matInput id="username" formControlName="username" />
+    </mat-form-field>
+    <mat-form-field class="authform-full-width" appearance="fill">
+      <mat-label>Heslo</mat-label>
+      <input
+        matInput
+        id="password"
+        type="password"
+        formControlName="password"
+      />
+    </mat-form-field>
+    <button type="submit" mat-flat-button color="primary">
+      Přihlásit se
+    </button>
+  </form>
+</mat-dialog-content>

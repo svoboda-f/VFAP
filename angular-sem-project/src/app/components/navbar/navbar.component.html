@@ -3,7 +3,7 @@
     <a class="mx-2 text-decoration-none d-flex align-items-center text-black" routerLink="/"><img src="assets/logo.png" class="enlarge" width="28"></a>
     <button mat-button routerLink="/about">O aplikaci</button>
     <button mat-button routerLink="/calculator">Kalkulačka</button>
-    <button mat-button routerLink="/diary" *ngIf="user">Deník</button>
+    <button mat-button routerLink="/diary">Deník</button>
   </div>
   <div class="col-4 d-flex justify-content-end p-2">
     <button mat-flat-button [ngClass]="{'me-2': user}" (click)="login()" [color]="user ? 'warn' : null">{{loginButtonText}}</button>

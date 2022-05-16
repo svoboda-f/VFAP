@@ -17,6 +17,8 @@ import {MatTableModule} from "@angular/material/table";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatDialogModule} from "@angular/material/dialog";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -28,19 +30,23 @@ import {MatRadioModule} from "@angular/material/radio";
     AuthDialogComponent,
     ProfileComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    MatTabsModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatTabsModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRadioModule,
+        MatDialogModule,
+        HttpClientModule
+    ],
+  providers: [
+    HttpClient
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

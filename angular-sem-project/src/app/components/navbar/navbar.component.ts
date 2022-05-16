@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {AuthDialogComponent} from "../auth-dialog/auth-dialog.component";
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +12,9 @@ export class NavbarComponent implements OnInit {
   loginButtonText: string = '';
   name: string = 'Filip';
 
-  constructor() {
+  constructor(
+    private dialog: MatDialog,
+  ) {
     this.loginButtonText = this.user ? 'Odhlásit' : 'Přihlásit';
   }
 
@@ -19,8 +23,11 @@ export class NavbarComponent implements OnInit {
   }
 
   login(): void {
-    this.user = !this.user;
-    this.loginButtonText = this.user ? 'Odhlásit' : 'Přihlásit';
+    // this.user = !this.user;
+    // this.loginButtonText = this.user ? 'Odhlásit' : 'Přihlásit';
+    this.dialog.open(AuthDialogComponent, {
+      width: '420px'
+    })
   }
 
 }
