@@ -20,7 +20,7 @@ import java.time.LocalDate;
 public class Entry {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private LocalDate date;
     private double weight;
 

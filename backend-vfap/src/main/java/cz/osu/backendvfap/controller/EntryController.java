@@ -9,25 +9,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/entries")
 public class EntryController {
     @Autowired
     private EntryRepository entryRepository;
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/{userId}/entries")
-    public List<Entry> getEntries(@PathVariable int userId) {
-        return userRepository.findById(userId).get().getUserInfo().getEntries();
+    @GetMapping("/{userId}")
+    public List<Entry> getEntries(@PathVariable long userId) {
+        return userRepository.getById(userId).getUserInfo().getEntries();
     }
 
-    @PostMapping("/{userId}/entries/new")
-    public void newEntry(@PathVariable int userId, @RequestBody Entry entry) {
-        this.userRepository.findById(userId).get().getUserInfo().getEntries().add(entry);
+    @PostMapping("/{userId}")
+    public void newEntry(@PathVariable long userId, @RequestBody Entry entry) {
+        this.userRepository.getById(userId).getUserInfo().getEntries().add(entry);
         this.entryRepository.save(entry);
     }
 
-    @DeleteMapping("/{userId}/entries/delete/{entryId}")
-    public String deleteEntry(@PathVariable("userId") int userId, @PathVariable("entryId") int entryId) {
+    @DeleteMapping("/{userId}/delete/{entryId}")
+    public String deleteEntry(@PathVariable("userId") long userId, @PathVariable("entryId") long entryId) {
         Entry entry = this.entryRepository.getById(entryId);
         this.userRepository.getById(userId).getUserInfo().getEntries().remove(entry);
         this.entryRepository.save(entry);

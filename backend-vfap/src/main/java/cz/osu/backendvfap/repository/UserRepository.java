@@ -3,5 +3,6 @@ package cz.osu.backendvfap.repository;
 import cz.osu.backendvfap.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findUserByUsernameEquals(String name);
 }
