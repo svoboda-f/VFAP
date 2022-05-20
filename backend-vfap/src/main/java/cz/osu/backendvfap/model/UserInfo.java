@@ -48,6 +48,7 @@ public class UserInfo {
 
     public Map<String, Object> getInfo() {
         Map<String, Object> ret = new LinkedHashMap<>();
+        ret.put("username", this.user.getUsername());
         ret.put("firstName", this.firstName);
         ret.put("lastName", this.lastName);
         ret.put("dateOfBirth", this.dateOfBirth);

@@ -3,6 +3,7 @@ package cz.osu.backendvfap.controller;
 import cz.osu.backendvfap.model.Entry;
 import cz.osu.backendvfap.repository.EntryRepository;
 import cz.osu.backendvfap.repository.UserRepository;
+import cz.osu.backendvfap.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,22 +16,27 @@ public class EntryController {
     private EntryRepository entryRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private AuthService authService;
 
-    @GetMapping("/{userId}")
-    public List<Entry> getEntries(@PathVariable long userId) {
-        return userRepository.getById(userId).getUserInfo().getEntries();
+    @GetMapping()
+    public List<Entry> getEntries() {
+        long id = this.authService.getCurrentUserId();
+        return userRepository.getById(id).getUserInfo().getEntries();
     }
 
-    @PostMapping("/{userId}")
-    public void newEntry(@PathVariable long userId, @RequestBody Entry entry) {
-        this.userRepository.getById(userId).getUserInfo().getEntries().add(entry);
+    @PostMapping()
+    public void newEntry(@RequestBody Entry entry) {
+        long id = this.authService.getCurrentUserId();
+        this.userRepository.getById(id).getUserInfo().getEntries().add(entry);
         this.entryRepository.save(entry);
     }
 
-    @DeleteMapping("/{userId}/delete/{entryId}")
-    public String deleteEntry(@PathVariable("userId") long userId, @PathVariable("entryId") long entryId) {
+    @DeleteMapping("/delete/{entryId}")
+    public String deleteEntry(@PathVariable("entryId") long entryId) {
         Entry entry = this.entryRepository.getById(entryId);
-        this.userRepository.getById(userId).getUserInfo().getEntries().remove(entry);
+        long id = this.authService.getCurrentUserId();
+        this.userRepository.getById(id).getUserInfo().getEntries().remove(entry);
         this.entryRepository.save(entry);
         return "Záznam byl smazán";
     }
