@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/entries")
 public class EntryController {
     @Autowired
@@ -33,11 +34,10 @@ public class EntryController {
     }
 
     @DeleteMapping("/delete/{entryId}")
-    public String deleteEntry(@PathVariable("entryId") long entryId) {
+    public void deleteEntry(@PathVariable("entryId") long entryId) {
         Entry entry = this.entryRepository.getById(entryId);
         long id = this.authService.getCurrentUserId();
         this.userRepository.getById(id).getUserInfo().getEntries().remove(entry);
         this.entryRepository.save(entry);
-        return "Záznam byl smazán";
     }
 }

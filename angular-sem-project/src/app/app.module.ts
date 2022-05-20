@@ -19,6 +19,14 @@ import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatDialogModule} from "@angular/material/dialog";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { NewDiaryEntryDialogComponent } from './components/new-diary-entry-dialog/new-diary-entry-dialog.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatSortModule} from "@angular/material/sort";
+import {authInterceptorProviders} from "./auth.interceptor";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -28,24 +36,32 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     CalculatorComponent,
     DiaryComponent,
     AuthDialogComponent,
-    ProfileComponent
+    ProfileComponent,
+    NewDiaryEntryDialogComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        ReactiveFormsModule,
-        MatTabsModule,
-        MatTableModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatRadioModule,
-        MatDialogModule,
-        HttpClientModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatTabsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatDialogModule,
+    HttpClientModule,
+    MatIconModule,
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+  ],
   providers: [
-    HttpClient
+    HttpClient,
+    authInterceptorProviders,
+    MatSnackBar,
   ],
   bootstrap: [AppComponent]
 })

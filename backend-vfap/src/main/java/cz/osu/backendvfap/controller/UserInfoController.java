@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/info")
+
 public class UserInfoController {
     @Autowired
     private UserInfoRepository userInfoRepository;
@@ -20,6 +22,7 @@ public class UserInfoController {
     public Map<String,Object> getUserInfo() {
         long id = this.authService.getCurrentUserId();
         return this.userInfoRepository.getById(id).getInfo();
+//        return null;
     }
 
     @PostMapping()

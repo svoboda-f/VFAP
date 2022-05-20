@@ -5,6 +5,7 @@ import {CalculatorEntry} from "../../models/calculator-entry.model";
 import {MatTableDataSource} from "@angular/material/table";
 import {MyLocalStorageService} from "../../services/my-local-storage.service";
 import {Sex} from "../../enums/sex.enum";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -30,15 +31,19 @@ export class CalculatorComponent implements OnInit {
     private readonly calculatorService: CalculatorService,
     private readonly myLocalStorageService: MyLocalStorageService,
     private readonly formBuilder: FormBuilder,
+    private readonly snackbar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
+    console.log("ONINIT", this.entries);
     this.entries = this.myLocalStorageService.loadCalculatorEntries();
+    console.log("ONINIT-přiřazení", this.entries);
     this.keyExists = this.myLocalStorageService.calculatorEntriesExist();
     this.entriesDataSource = new MatTableDataSource(this.entries);
   }
 
   calculate(): string {
+    this.entriesDataSource = new MatTableDataSource(this.entries);
     const date = new Date().toISOString().split('T')[0];
 
     const calculatorEntry: CalculatorEntry = {
@@ -65,5 +70,10 @@ export class CalculatorComponent implements OnInit {
   deleteEntries(): void {
     this.myLocalStorageService.deleteCalculatorEntries();
     this.keyExists = false;
+    this.entriesDataSource = null;
+    this.entries = [];
+    this.snackbar.open('Data smazána', undefined, {
+      duration: 3000
+    })
   }
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../services/user.service";
+import {UserInfo} from "../../models/user-info.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -7,19 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  user = {
-    firstName: 'Filip',
-    lastName: 'Svoboda',
-    dateOfBirth: '02.11.1999',
-    height: '174',
-    weight: '80',
-    BMI: '26.8',
-    BMR: '1700',
-  }
+  userInfo?: UserInfo;
 
-  constructor() { }
+  constructor(
+    private readonly user: UserService,
+    private readonly router: Router,
+  ) { }
 
   ngOnInit(): void {
+    this.user.getCurrentUser().subscribe({
+      next: u => {
+        this.userInfo = u;
+        if (!u) {
+          this.router.navigate(['/']);
+        }
+      },
+      error: () => {
+        this.router.navigate(['/']);
+      }
+      }
+    )
   }
 
 }

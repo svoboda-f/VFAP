@@ -6,12 +6,11 @@ import {CalculatorComponent} from "./components/calculator/calculator.component"
 import {ProfileComponent} from "./components/profile/profile.component";
 
 const routes: Routes = [
-  { path: 'about', component: AboutComponent},
   { path: 'calculator', component: CalculatorComponent},
   { path: 'diary', component: DiaryComponent},
   { path: 'profile', component: ProfileComponent},
 
-  // { path: '**', pathMatch: 'full', component: NavbarComponent },
+  { path: '**', pathMatch: 'full', component: AboutComponent },
 ];
 
 @NgModule({

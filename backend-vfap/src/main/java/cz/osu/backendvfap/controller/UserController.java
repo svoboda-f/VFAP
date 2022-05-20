@@ -9,14 +9,14 @@ import cz.osu.backendvfap.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 public class UserController {
     @Autowired
     private JwtUtil jwtUtil;
@@ -39,7 +39,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String generateToken(@RequestBody Auth auth) throws Exception {
+    public Map<String, Object> generateToken(@RequestBody Auth auth) throws Exception {
+        Map<String, Object> ret = new LinkedHashMap<>();
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(auth.getUsername(), auth.getPassword())
@@ -47,6 +48,8 @@ public class UserController {
         } catch (Exception e) {
             throw new Exception("Invalid username/password");
         }
-        return jwtUtil.generateToken(auth.getUsername());
+        ret.put("token", jwtUtil.generateToken(auth.getUsername()));
+//        return "{\"token\": " + jwtUtil.generateToken(auth.getUsername()) + "\"}";
+        return ret;
     }
 }

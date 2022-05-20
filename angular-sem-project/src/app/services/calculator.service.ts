@@ -15,4 +15,8 @@ export class CalculatorService {
     const heightInMeters = height / 100;
     return Math.round((weight / (heightInMeters * heightInMeters))*10) / 10;
   }
+
+  calculateAge(dateOfBirth: Date) {
+    return Math.floor((new Date().getTime() - new Date(dateOfBirth).getTime()) / 3.15576e+10);
+  }
 }
