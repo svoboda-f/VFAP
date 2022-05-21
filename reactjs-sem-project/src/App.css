@@ -1,0 +1,11 @@
+.enlarge:hover {
+    scale: 1.14;
+}
+.my-bg-color {
+    background-color: #673ab7;
+}
+.fab-location {
+    position: fixed!important;
+    right: 24px!important;
+    bottom: 24px!important;
+}

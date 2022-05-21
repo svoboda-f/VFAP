@@ -24,7 +24,7 @@ export class UserService {
       },
       error: (e) => {
         console.log(e);
-        // this.tokenStorage.signOut();
+        this.tokenStorage.signOut();
         // @ts-ignore
         this.currentUser.next();
       },
