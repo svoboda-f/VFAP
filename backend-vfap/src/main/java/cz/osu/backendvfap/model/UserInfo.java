@@ -30,7 +30,7 @@ public class UserInfo {
     private String lastName;
     private LocalDate dateOfBirth;
     private int height;
-    @OneToMany(targetEntity = Entry.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Entry.class, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "userInfo_Entry_fk", referencedColumnName = "user_id")
     private List<Entry> entries;
 

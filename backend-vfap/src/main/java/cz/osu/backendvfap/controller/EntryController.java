@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
 @RequestMapping("/entries")
 public class EntryController {
     @Autowired
@@ -27,10 +27,11 @@ public class EntryController {
     }
 
     @PostMapping()
-    public void newEntry(@RequestBody Entry entry) {
+    public Entry newEntry(@RequestBody Entry entry) {
         long id = this.authService.getCurrentUserId();
         this.userRepository.getById(id).getUserInfo().getEntries().add(entry);
         this.entryRepository.save(entry);
+        return entry;
     }
 
     @DeleteMapping("/delete/{entryId}")

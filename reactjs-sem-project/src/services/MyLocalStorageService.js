@@ -24,16 +24,16 @@ export default class MyLocalStorageService{
         return !!entries;
     }
 
-    signOut() {
+    static signOut() {
         localStorage.removeItem(TOKEN_KEY);
     }
 
-    saveToken(token) {
+    static saveToken(token) {
         localStorage.removeItem(TOKEN_KEY);
         localStorage.setItem(TOKEN_KEY, token);
     }
 
-    getToken() {
+    static getToken() {
         return localStorage.getItem(TOKEN_KEY);
     }
 }
